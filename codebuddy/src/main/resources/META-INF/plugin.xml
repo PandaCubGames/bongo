@@ -1,0 +1,44 @@
+<idea-plugin>
+    <!-- Placeholder identity. The id can never change once the plugin is published. -->
+    <id>com.pandacubgames.codebuddy</id>
+    <name>Code Buddy</name>
+    <vendor url="https://github.com/PandaCubGames">PandaCubGames</vendor>
+
+    <description><![CDATA[
+    A small character that lives in your IDE window and reacts to what you do:
+    typing, running your app, debugging and hitting breakpoints.
+    Drag it anywhere and resize it in Settings | Appearance &amp; Behavior | Code Buddy.
+    ]]></description>
+
+    <depends>com.intellij.modules.platform</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <postStartupActivity implementation="com.pandacubgames.codebuddy.BuddyStartup"/>
+        <applicationConfigurable
+                id="codebuddy.settings"
+                parentId="appearance"
+                displayName="Code Buddy"
+                instance="com.pandacubgames.codebuddy.BuddyConfigurable"/>
+    </extensions>
+
+    <applicationListeners>
+        <listener class="com.pandacubgames.codebuddy.TypingListener"
+                  topic="com.intellij.openapi.actionSystem.ex.AnActionListener"/>
+    </applicationListeners>
+
+    <projectListeners>
+        <listener class="com.pandacubgames.codebuddy.RunListener"
+                  topic="com.intellij.execution.ExecutionListener"/>
+        <listener class="com.pandacubgames.codebuddy.DebugListener"
+                  topic="com.intellij.xdebugger.XDebuggerManagerListener"/>
+    </projectListeners>
+
+    <actions>
+        <action id="com.pandacubgames.codebuddy.Toggle"
+                class="com.pandacubgames.codebuddy.ToggleBuddyAction"
+                text="Show Code Buddy"
+                description="Show or hide the Code Buddy character">
+            <add-to-group group-id="ViewMenu" anchor="last"/>
+        </action>
+    </actions>
+</idea-plugin>
