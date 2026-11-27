@@ -4,3 +4,4 @@ royal=Royal Bongo
 minecraft=Minecraft Bongo
 nerd=Nerd Bongo
 streamer=Streamer Bongo
+christmas=Christmas Bongo
